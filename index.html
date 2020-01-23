@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        overflow: hidden;
+        height: 100vh;
+      }
+      .background {
+        opacity: 0;
+        width: 2800px;
+        position: relative;
+        overflow: hidden;
+        height: 600px;
+        animation: fade 400ms ease-in 1.5s forwards;
+      }
+      .background img {
+        display: none;
+        background-color: white;
+        border-radius: 50%;
+        box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.25);
+        margin: 15px;
+        position: absolute;
+        transition: transform 2500ms;
+      }
+      @keyframes fade {
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="background">
+        <img
+          src="https://image.flaticon.com/icons/svg/2485/2485986.svg"
+          width="100"
+          height="auto"
+        />
+      </div>
+    </div>
+    <script>
+      var _target = document.querySelector('.background img')
+      var flag = true
+      var randomX = Math.random() * 2800
+      var randomY = Math.random() * 350 - _target.clientHeight
+      _target.style.transform = `translate(${randomX}px, ${randomY}px)`
+      _target.style.display = 'block'
+      var time = window.setInterval(function() {
+        var target = document.querySelector('.background img')
+        console.log(target.clientHeight / 2)
+        target.style.transform = `translate(${randomX}px, ${randomY}px)`
+        randomX -= Math.random() * 8 + 5
+        randomY -=
+          Math.random() >= 0.5 ? Math.random() * 4 : -1 * (Math.random() * 4)
+        if (randomX <= -190) {
+          randomX = 2800
+          target.style.transition = 'none'
+          target.style.transform = `translate(2800px, ${randomY}px)`
+          target.style.transition = 'transform 2500ms'
+        }
+      }, 200)
+    </script>
+  </body>
+</html>
