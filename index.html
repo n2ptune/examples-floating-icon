@@ -62,7 +62,7 @@
         randomX -= Math.random() * 8 + 5
         randomY -=
           Math.random() >= 0.5 ? Math.random() * 4 : -1 * (Math.random() * 4)
-        if (randomX <= -190) {
+        if (randomX <= -300) {
           randomX = 2800
           target.style.transition = 'none'
           target.style.transform = `translate(2800px, ${randomY}px)`
